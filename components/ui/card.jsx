@@ -2,6 +2,12 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+/** @typedef {import("react").HTMLAttributes<HTMLDivElement>} CardProps */
+/**
+ * @type {import("react").ForwardRefExoticComponent<
+ *   import("react").PropsWithoutRef<CardProps> & import("react").RefAttributes<HTMLDivElement>
+ * >}
+ */
 const Card = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -10,6 +16,11 @@ const Card = React.forwardRef(({ className, ...props }, ref) => (
 ))
 Card.displayName = "Card"
 
+/**
+ * @type {import("react").ForwardRefExoticComponent<
+ *   import("react").PropsWithoutRef<CardProps> & import("react").RefAttributes<HTMLDivElement>
+ * >}
+ */
 const CardHeader = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -18,6 +29,11 @@ const CardHeader = React.forwardRef(({ className, ...props }, ref) => (
 ))
 CardHeader.displayName = "CardHeader"
 
+/**
+ * @type {import("react").ForwardRefExoticComponent<
+ *   import("react").PropsWithoutRef<CardProps> & import("react").RefAttributes<HTMLDivElement>
+ * >}
+ */
 const CardTitle = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -26,6 +42,11 @@ const CardTitle = React.forwardRef(({ className, ...props }, ref) => (
 ))
 CardTitle.displayName = "CardTitle"
 
+/**
+ * @type {import("react").ForwardRefExoticComponent<
+ *   import("react").PropsWithoutRef<CardProps> & import("react").RefAttributes<HTMLDivElement>
+ * >}
+ */
 const CardDescription = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -34,11 +55,21 @@ const CardDescription = React.forwardRef(({ className, ...props }, ref) => (
 ))
 CardDescription.displayName = "CardDescription"
 
+/**
+ * @type {import("react").ForwardRefExoticComponent<
+ *   import("react").PropsWithoutRef<CardProps> & import("react").RefAttributes<HTMLDivElement>
+ * >}
+ */
 const CardContent = React.forwardRef(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
 ))
 CardContent.displayName = "CardContent"
 
+/**
+ * @type {import("react").ForwardRefExoticComponent<
+ *   import("react").PropsWithoutRef<CardProps> & import("react").RefAttributes<HTMLDivElement>
+ * >}
+ */
 const CardFooter = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
