@@ -1,18 +1,27 @@
-import { MongoClient } from 'mongodb'
+import mongoose from 'mongoose'
 import { v4 as uuidv4 } from 'uuid'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import crypto from 'crypto'
 
-let client
 let db
 
 async function connectToMongo() {
-  if (!client) {
-    client = new MongoClient(process.env.MONGO_URL)
-    await client.connect()
-    db = client.db(process.env.DB_NAME || 'portfolio')
+  const mongoUrl = process.env.MONGO_URL
+
+  if (!mongoUrl) throw new Error('MONGO_URL is not set. Set it to your MongoDB connection string.')
+
+  // Prevent accidental use of a local MongoDB in production deployments.
+  if (process.env.NODE_ENV === 'production' && (mongoUrl.includes('localhost') || mongoUrl.includes('127.0.0.1'))) {
+    throw new Error('MONGO_URL is pointing to localhost ("' + mongoUrl + '"). In production set MONGO_URL to a remote MongoDB (e.g. MongoDB Atlas)')
   }
+
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection.db
+  }
+
+  await mongoose.connect(mongoUrl, { dbName: process.env.DB_NAME || 'portfolio', autoIndex: false })
+  db = mongoose.connection.db
   return db
 }
 
